@@ -18,9 +18,9 @@
 #define TRUE 1
 #define EXECUTE_BLOCK FALSE
 
-#define FINISHED_PART_1 FALSE
-#define FINISHED_PART_2 FALSE
-#define FINISHED_PART_3 FALSE
+#define FINISHED_PART_1 TRUE
+#define FINISHED_PART_2 TRUE
+#define FINISHED_PART_3 TRUE
 
 #include <algorithm>
 #include <cassert>
@@ -58,16 +58,47 @@ using std::setw;
 /**
  * @brief Common namespace for CSC232 identifiers.
  */
-namespace csc232
-{
+namespace csc232{
     // Add any user-defined functions prescribed in your assignment below
     // TODO: 1.1 Declare the Shape interface below
-
-    // TODO: 2.1 Provide an inline definition of the Square class below
-
-    // TODO: 3.1 Provide an inline definition of the Circle class below
-
+    class Shape{
+    public:
+        virtual double area() const = 0;
+        virtual double perimeter() const = 0;
+         ~Shape() = default;
+    };
+    class Square : public Shape {
+    public:
+        double area() const override {
+            double area = side * side;
+            return area;
+            }
+        double perimeter() const override
+            {
+                double p = side * 4;
+                return p;
+            }
+            ~Square() = default;
+    private:
+        double side {1.0};
+    };
+    class Circle : public Shape {
+    public:
+        double area() const override 
+            {
+                double area = r * r * M_PI;
+                return area;
+            }
+        double perimeter() const override
+            {
+                double p = r * 2 * M_PI; /// p is parimeter
+                return p;
+            }
+            ~Circle() = default;
+    private:
+        double r {1.0};
+    };
     // DO NOT Modify anything below this line
-} // namespace csc232
+}// namespace csc232
 
 #endif // CSC232_COMMON_H_
